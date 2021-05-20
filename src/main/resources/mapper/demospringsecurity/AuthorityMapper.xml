@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demospringsecurity.mapper.AuthorityMapper">
+
+    <select id="getAuthorityListByUsername" resultType="com.example.demospringsecurity.entity.Authority">
+        select
+            a.authority
+        from t_authority a
+        inner join t_customer_authority ca
+            on ca.authority_id = a.id
+        inner join t_customer c
+            on c.id = ca.customer_id
+            and c.username = #{username}
+    </select>
+
+</mapper>
